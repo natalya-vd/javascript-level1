@@ -1,1 +1,1 @@
-# javascript-level1
+# Базовый курс JavaScript
