@@ -1,8 +1,9 @@
-// // Решение первой задачи
+// Решение первой задачи
 var tempCelsius = +prompt('Введите температуру в градусах по Цельсию');
 var tempFahrenheit = (9 / 5) * tempCelsius + 32;
 
-alert('Вы ввели ' + tempCelsius + ' градусов по Цельсию.\n' + 'Температура в градусах по Фаренгейту = ' + tempFahrenheit.toFixed(1));
+alert(`Вы ввели ${tempCelsius} градусов по Цельсию.
+Температура в градусах по Фаренгейту = ${tempFahrenheit.toFixed(1)}`);
 
 /*Добавим проверку на условие. Это как дополнительное, заходелось сделать проверку на условие (заодно немного вспомнить циклы)
 
@@ -15,4 +16,5 @@ while(isNaN(tempCelsius)) {
 
 var tempFahrenheit = (9 / 5) * tempCelsius + 32;
 
-alert('Вы ввели ' + tempCelsius + ' градусов по Цельсию.\n' + 'Температура в градусах по Фаренгейту = ' + tempFahrenheit.toFixed(1));*/
+alert(`Вы ввели ${tempCelsius} градусов по Цельсию.
+Температура в градусах по Фаренгейту = ${tempFahrenheit.toFixed(1)}`);*/
