@@ -2,20 +2,19 @@
 
 const a = +prompt('Введите целое число a');
 const b = +prompt('Введите целое число b');
-let result;
 
 if(a >= 0 && b >= 0) {
-    result = a - b;
+    let result = a - b;
     alert(`Вы ввели a = ${a}, b = ${b}. 
     Разность a - b равна ${result}`); // почему-то при выводе в alert эта строка смещается вправо, относительно строки, которая выше. Почему?
 }
 else if (a < 0 && b < 0) {
-    result = a * b;
+    let result = a * b;
     alert(`Вы ввели a = ${a}, b = ${b}.
     Произведение a * b равно ${result}`); // почему-то при выводе в alert эта строка смещается вправо, относительно строки, которая выше. Почему?
 }
 else {
-    result = a + b;
+    let result = a + b;
     alert(`Вы ввели a = ${a}, b = ${b}.
     Сумма a + b равна ${result}`); // почему-то при выводе в alert эта строка смещается вправо, относительно строки, которая выше. Почему?
 }
@@ -25,7 +24,6 @@ else {
 
 let a = +prompt('Введите целое число a');
 let b = +prompt('Введите целое число b');
-let result;
 
 while(Number.isInteger(a) == false || Number.isInteger(b) == false) {
     if(isNaN(a) || isNaN(b)) {
@@ -41,17 +39,17 @@ while(Number.isInteger(a) == false || Number.isInteger(b) == false) {
 }
 
 if(a >= 0 && b >= 0) {
-    result = a - b;
+    let result = a - b;
     alert(`Вы ввели a = ${a}, b = ${b}. 
     Разность a - b равна ${result}`);
 }
 else if (a < 0 && b < 0) {
-    result = a * b;
+    let result = a * b;
     alert(`Вы ввели a = ${a}, b = ${b}.
     Произведение a * b равно ${result}`);
 }
 else {
-    result = a + b;
+    let result = a + b;
     alert(`Вы ввели a = ${a}, b = ${b}.
     Сумма a + b равна ${result}`);
 }*/
