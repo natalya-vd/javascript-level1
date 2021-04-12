@@ -1,6 +1,18 @@
 //Решение задачи №1
 
 const MAX = 100;
+
+outer:
+for(let i = 2; i <= MAX; i++) {
+    for(let j = 2; j < i; j++) {
+        if(i % j === 0) {
+            continue outer;
+        }
+    }
+    console.log(i);
+}
+
+/*const MAX = 100;
 let number = 2; // беру от 2-х, т.к. в простые числа 0 и 1 не входят, по определению простых чисел
 
 while(number <= MAX) {
@@ -29,7 +41,7 @@ while(number <= MAX) {
             break;
     }
     number++;
-}
+}*/
 
 /* Можно простые числа накапливать в массиве
 
