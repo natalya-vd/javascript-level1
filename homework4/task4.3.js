@@ -196,7 +196,7 @@ let mover = {
 
     getUserAnswer(direction) {
         const userAnswer = {
-            questionNumber: player.questionNumber, // нужно ли это?
+            questionNumber: player.questionNumber,
             userAnswer: '',
         };        
 
