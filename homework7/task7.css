@@ -22,7 +22,7 @@ html, body {
     color: rgb(233, 158, 6);
 }
 .game.stopped .score {
-    color: rgb(233, 6, 6);
+    color: rgb(233, 6, 6);    
 }
 
 .board {
@@ -50,6 +50,11 @@ html, body {
 }
 .game.stopped .board {
     border-color: rgb(233, 6, 6);
+    display: block;
+    font-size: 22px;
+    padding: 75px;
+    box-sizing: border-box;
+    text-align: center;
 }
 
 .buttons button {
