@@ -1,6 +1,6 @@
-//Решение задачи №1,2,3
+//Решение задачи №1
 
-//Вроде все сделала по пунктам, которые на сайте. Все кнопки работают, можно после кнопки "Стоп" запустить игру заново. Добавила объект, который увеличивает скорость движения змейки, вроде работает. Выдает ошибку строка 130 (так и не поняла почему и как ее исправить). Добавила проверку для еды, но она походу не работает, т.к. иногда яблоки появляются в змейке. Улучшила код только в 1 месте строка 224
+//Убрала удаления события click с кнопок и прописала условия по классам, изменила порядок головы и хвоста в snake.parts. Сделала замыкания (строка 200, 319, 331, 377) (надеюсь поняла правильно:))), добавила bind, чтобы прописывать все через this, но почему-то не получилось это сделать в 1 месте пробовала разные варианты (строка 129)
 
 const GAME_STATUS_STARTED = 'started';
 const GAME_STATUS_PAUSED  = 'paused';
@@ -45,7 +45,6 @@ const game = {
 
         this.setGameStatus(GAME_STATUS_STARTED);
 
-        //game.isPrimePause = true;
         this.isPrimePause = true;
         board.clearBoard();
         score.updateScore();
@@ -55,7 +54,6 @@ const game = {
         snake.render();
         food.render();
 
-        //game.moveConstSnake();
         this.moveConstSnake();
     },
 
@@ -70,16 +68,13 @@ const game = {
         this.setGameStatus(GAME_STATUS_PAUSED);
 
         if(game.isPrimePause) {
-            clearInterval(game.idInterval);            
-
+            clearInterval(game.idInterval);
         } 
         else {
-            this.setGameStatus(GAME_STATUS_STARTED);
-            //game.moveConstSnake();
+            this.setGameStatus(GAME_STATUS_STARTED);            
             this.moveConstSnake();
         };
-
-        //game.isPrimePause = !game.isPrimePause;
+        
         this.isPrimePause = !this.isPrimePause;
         return;
     },
@@ -90,7 +85,6 @@ const game = {
     stop() {
         this.setGameStatus(GAME_STATUS_STOPPED);
         
-        //game.isPrimePause = !game.isPrimePause;
         this.isPrimePause = !this.isPrimePause;
 
         cells.clearItems(board.getElement());
@@ -132,12 +126,15 @@ const game = {
 
         snake.setDirection(direction);
 
-        //game.moveSnake();
+        game.moveSnake();
         //this.moveSnake()
-        moveSnake.call(game); //Остановилась здесь, какая-то ошибка
+        //this.moveSnake.call(game);
+        //moveSnake.call(game);
+
         // const callMoveSnake = this.moveSnake.bind(game);
         // callMoveSnake()
-        //this.moveSnake().bind(game)
+
+        //this.moveSnake.bind(game)
     },
 
     /**
@@ -190,7 +187,6 @@ const game = {
     moveConstSnake () {
         speedSnake.getInterval();
         const intervalSnake = setInterval(game.moveSnake.bind(game), speedSnake.time);
-        //game.idInterval = intervalSnake;
         this.idInterval = intervalSnake;
     },
 
@@ -201,10 +197,12 @@ const game = {
      * @param status {GAME_STATUS_STARTED | GAME_STATUS_PAUSED | GAME_STATUS_STOPPED} Строка представляющая статус.
      */
     setGameStatus(status) {
-        //const element = game.getElement();
         const element = this.getElement();
         
-        element.className = `${CLASS_PLAY} ${status}`;
+        function gameStatus() { //Замыкание
+            element.className = `${CLASS_PLAY} ${status}`;
+        };
+        gameStatus();
     }
 };
 
@@ -272,13 +270,13 @@ const score = {
      */
     render() {
         const score = this.getElement();
-
+        
         score.innerHTML = this.score;
     },
 
     updateScore() {
         const score = this.getElement();
-
+        
         score.innerHTML = this.score;
     }
 }
@@ -320,7 +318,10 @@ const board = {
     renderGameOver() {
         const board = this.getElement();
 
-        board.innerHTML = `<p>Конец игры!</p><p>Счет равен ${score.score}</p><p>Для начала новой игры нажмите "Начать"</p><img src='./snake.jpg' width='286'></img>`
+        function renderedGamaOverBoard(){ //Замыкание
+            board.innerHTML = `<p>Конец игры!</p><p>Счет равен ${score.score}</p><p>Для начала новой игры нажмите "Начать"</p><img src='./snake.jpg' width='286'></img>`;
+        };
+        renderedGamaOverBoard();
     },
 
     /**
@@ -329,7 +330,10 @@ const board = {
     clearBoard() {
         const board = this.getElement();
 
-        board.innerHTML = '';
+        function clearBoardHTML() { //Замыкание
+            board.innerHTML = '';
+        };
+        clearBoardHTML();
     }
 };
 
@@ -372,9 +376,12 @@ const cells = {
     clearItems(element) {
         const cells = this.getElements();
         
-        for(let i = config.size**2 - 1; i >= 0; i--) { 
-            element.removeChild(cells[i]);
+        function clearItem() { //Замыкание
+            for(let i = config.size**2 - 1; i >= 0; i--) { 
+                element.removeChild(cells[i]);
+            };
         };
+        clearItem();
     }
 };
 
@@ -405,9 +412,9 @@ const snake = {
         this.direction = SNAKE_DIRECTION_RIGHT;
 
         this.parts = [
-            { top: 0, left: 0 },
+            { top: 0, left: 2 }, //голова
             { top: 0, left: 1 },
-            { top: 0, left: 2 },
+            { top: 0, left: 0 }, //хвост
         ];
     },
 
@@ -422,7 +429,7 @@ const snake = {
             || this.direction === SNAKE_DIRECTION_LEFT && direction === SNAKE_DIRECTION_RIGHT
             || this.direction === SNAKE_DIRECTION_RIGHT && direction === SNAKE_DIRECTION_LEFT) {
             return;
-        }
+        };
 
         this.direction = direction;
     },
@@ -434,7 +441,7 @@ const snake = {
      * @returns {{top: number, left: number}} Возвращает объект с координатами.
      */
     getNextPosition() {        
-        const position = { ...this.parts[this.parts.length - 1] };
+        const position = { ...this.parts[0] };
 
         switch(this.direction) {
             case SNAKE_DIRECTION_UP:
@@ -474,10 +481,10 @@ const snake = {
      */
     setPosition(position, shift = true) {        
         if (shift) {
-            this.parts.shift();
+            this.parts.pop();
         };
 
-        this.parts.push(position);
+        this.parts.unshift(position);
     },
 
     /**
@@ -581,17 +588,6 @@ function addClick(idButton, funcButton) {
 };
 
 /**
- * Функция, которая выполняет инициализацию игры.
- */
-function init() {
-    addClick('button-start', game.start.bind(game));
-    addClick('button-pause', game.pause.bind(game));
-    addClick('button-stop', game.stop.bind(game));
-
-    window.addEventListener('keydown', game.move);
-};
-
-/**
  * Функция, генерирующая случайные числа.
  *
  * @param min {number} Нижняя граница генерируемого числа.
@@ -603,4 +599,13 @@ function getRandomNumber(min, max) {
     return Math.trunc(Math.random() * (max - min) + min);
 };
 
-window.addEventListener('load', init);
+/**
+ * Функция, которая выполняет инициализацию игры.
+ */
+window.addEventListener('load', function() {
+    addClick('button-start', game.start.bind(game));
+    addClick('button-pause', game.pause.bind(game));
+    addClick('button-stop', game.stop.bind(game));
+
+    window.addEventListener('keydown', game.move);
+});
