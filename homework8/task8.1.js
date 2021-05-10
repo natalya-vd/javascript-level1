@@ -125,16 +125,8 @@ const game = {
         };
 
         snake.setDirection(direction);
-
-        game.moveSnake();
-        //this.moveSnake()
-        //this.moveSnake.call(game);
-        //moveSnake.call(game);
-
-        // const callMoveSnake = this.moveSnake.bind(game);
-        // callMoveSnake()
-
-        //this.moveSnake.bind(game)
+        
+        this.moveSnake();
     },
 
     /**
@@ -607,5 +599,5 @@ window.addEventListener('load', function() {
     addClick('button-pause', game.pause.bind(game));
     addClick('button-stop', game.stop.bind(game));
 
-    window.addEventListener('keydown', game.move);
+    window.addEventListener('keydown', game.move.bind(game));
 });
