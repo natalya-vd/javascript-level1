@@ -76,9 +76,12 @@ function rendererImage(seed) {
 
     const image = document.createElement('img');
 
+    image.className = 'gallery_img';
     image.src = `https://picsum.photos/seed/${seed}/600`;
     image.alt = `Изображение ${seed}`;
     image.dataset.seed = `${seed}`;
+    image.height = '600';
+    image.width = '600';
 
     image.addEventListener('error', loadErrorImage);
 

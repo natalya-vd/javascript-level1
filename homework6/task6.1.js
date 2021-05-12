@@ -1,7 +1,5 @@
 //Решение Задачи №1
 
-//Что-то при первоначальной загрузке фото у меня фотки загружаются секунд 5 и при перелистывании фоток в галерее видно как фотка пропадает и появляется (как щелчок какой-то), когда все фотки просмотришь, то это проходит и фотки загружаются без этого "щелчка". Это из-за того что фотки берутся со стороннего сайта или из-за чего-то в моем коде?
-
 function openImage(event) {
     const gallery = document.getElementsByClassName('gallery__inner')[0];
     
@@ -17,9 +15,12 @@ function openImage(event) {
 
     const image = document.createElement('img');
     
+    image.className = 'gallery_img';
     image.src = `https://picsum.photos/seed/${seed}/600`;
     image.alt = `Изображение ${seed}`;
-    image.dataset.seed = `${seed}`;
+    image.dataset.seed = `${seed}`;    
+    image.height = '600';
+    image.width = '600';
 
     image.addEventListener('error', loadErrorImage);//Проверка на наличие фото по url
 
