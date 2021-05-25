@@ -1,7 +1,6 @@
 //Решение Задачи №3
 
-//Вариант 1
-//Что-то у меня опять все сложно получилось и в рамки задания "Добавить в галерею функцию перехода к следующему изображению" не очень вписывается, т.к. я добавила не 1 функцию, а много :))))
+//Вариант 2
 
 //Функция, которая отвечает за переход назад
 function scrollBack() {
@@ -70,7 +69,7 @@ function serchNumberImage() {
 
 //Фукция, которая отрисовывает нужную картинку
 function rendererImage(seed) {
-    gallery = document.getElementsByClassName('gallery__inner')[0];
+    let gallery = document.getElementsByClassName('gallery__inner')[0];
 
     gallery.innerHTML = '';
 
@@ -110,7 +109,7 @@ function init() {
 
 window.addEventListener('load', init);
 
-/*Вариант 2, который мне пришел изначально :))))
+/*Вариант 3, который мне пришел изначально :))))
 
 const MIN = 1;
 
