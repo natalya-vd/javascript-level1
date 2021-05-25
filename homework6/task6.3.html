@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <script type="text/javascript" src="./task6.1.js"></script>
+    <script type="text/javascript" src="./task6.3.js"></script>
+    <title>Task №3</title>
+</head>
+
+<body>
+    <header class="header">
+        <div class="container">
+            <h1 class="header__title">
+                Главная страница
+            </h1>
+        </div>
+    </header>
+    <main>
+        <section class="gallery container">
+            <h2 class="gallery__title">
+                Галлерея
+            </h2>
+            <div class="gallery__wrapper">
+                <button class="gallery__btn" id="button-previous" type="button">
+                    <svg class="gallery__btn-img" width="13" height="23" viewBox="0 0 13 23"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M12.6998 3.7499L4.9498 11.4999L12.6998 19.2499L11.1498 22.3499L0.299805 11.4999L11.1498 0.649902L12.6998 3.7499Z" />
+                    </svg>
+                </button>
+                <div class="gallery__inner">
+                    <img class="gallery_img" data-seed="1" src="https://picsum.photos/seed/1/600" alt="Изображение 1"
+                        width="600" height="600">
+                </div>
+                <button class="gallery__btn" id="button-next" type="button">
+                    <svg class="gallery__btn-img" width="13" height="23" viewBox="0 0 13 23"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M0.299805 19.2499L8.0498 11.4999L0.299805 3.7499L1.8498 0.649902L12.6998 11.4999L1.8498 22.3499L0.299805 19.2499Z" />
+                    </svg>
+                </button>
+            </div>
+            <div class="gallery__footer">
+                <img class="gallery__footer-img" id="image-thumbnail-1" data-seed="1"
+                    src="https://picsum.photos/seed/1/150?blur" alt="Миниатюра изображения 1">
+                <img class="gallery__footer-img" id="image-thumbnail-2" data-seed="2"
+                    src="https://picsum.photos/seed/2/150?blur" alt="Миниатюра изображения 2">
+                <img class="gallery__footer-img" id="image-thumbnail-3" data-seed="3"
+                    src="https://picsum.photos/seed/3/150?blur" alt="Миниатюра изображения 3">
+            </div>
+        </section>
+    </main>
+    <footer class="footer">
+        <section class="container">
+            <h2 class="footer__title">
+                Подвал
+            </h2>
+        </section>
+    </footer>
+</body>
+
+</html>
